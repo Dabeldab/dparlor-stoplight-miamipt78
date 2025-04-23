@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import '../../styles/trafficlight.css'
-
+let cycle
 
 
 const TrafficLight = () => {
@@ -13,8 +13,20 @@ const TrafficLight = () => {
         setActiveLight(randomlight)
     } 
    
+function lightup() {
+ cycle = setInterval(() => {
+    toggle() 
+}, 1000);
 
+setTimeout(() => {
+    stopit()
+}, 10000)
+    }
  
+    function stopit() {
+        clearInterval(cycle)
+    }
+
    return <>    
                 <div className="background">
                     
@@ -36,6 +48,8 @@ const TrafficLight = () => {
                     <button className="btn btn-warning"onClick={() => setActiveLight('yellow')}>Yellow</button>
                     <button className="btn btn-success"onClick={() => setActiveLight('green')}>Green</button>
                     <button className="btn btn-primary"onClick={toggle}>Random</button>
+                    <button className="btn btn-primary"onClick={lightup}>lightup</button>
+                    <button className="btn btn-primary"onClick={stopit}>Stop</button>
 
                 </div>
                 </div>
